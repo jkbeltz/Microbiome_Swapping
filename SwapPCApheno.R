@@ -15,7 +15,7 @@ setwd("/Users/jackbeltz/Documents/PENN/Dissertation/CH 4 (Swapping)/Microbiome_s
 swapPCA <- read.csv("allpheno22.cagesum.csv") ##read data, generated in swapANAL
 swapPCA$group <- paste(swapPCA1$cage.treatment, swapPCA1$pheno.treatment) ##create grouping variable
 swapPCA <- swapPCA[, -c(6,7,9,10,12,13,15,16,18,20,21,23,24)]## remove SE and SD
-View(swapPCA)
+#View(swapPCA)
 
 
 
@@ -81,10 +81,8 @@ swapPhenoShape=c("N"=0,"F"=1,"I"=2,"S"=8)
 # EMPTY PLOT
 pBL<-ggplot()+theme_nothing()
 
-{
   
   #### PREP####
-  {
     # FUNTION TO FIND HULLS
     find_hull<-function(df) df[chull(df$PC1,df$PC2),]
  
@@ -107,8 +105,8 @@ pBL<-ggplot()+theme_nothing()
     swap.pca<-prcomp(swapPCA[5:11],scale=TRUE)
 
     ### sig variables
-    swap_s.pca<-prcomp(swapPCA[c(5:8,10)],scale=TRUE)
-    
+    swap_s.pca<-prcomp(swapPCA[c(6:8)],scale=TRUE)
+
     # GETTING PCA COORDINATES TO A DATA FRAME
     ##All Vars
     swap.pca.df<-data.frame(Cage=swapPCA$cage.number,Population=swapPCA$Population,Pheno=swapPCA$pheno,Group=swapPCA$group,swap.pca$x)
@@ -121,7 +119,7 @@ pBL<-ggplot()+theme_nothing()
     swap.s.pca.df<-data.frame(Cage=swapPCA$cage.number,Population=swapPCA$Population,Pheno=swapPCA$pheno,Group=swapPCA$group,swap_s.pca$x)
     
     ## manova for pheno / pop effect om sig variables
-    swap.s.PCA.aov<-manova(cbind(PC1,PC2,PC3,PC4,PC5)~Pheno*Population,swap.s.pca.df)
+    swap.s.PCA.aov<-manova(cbind(PC1,PC2,PC3)~Pheno*Population,swap.s.pca.df)
     summary(swap.s.PCA.aov) ### 
     
     #### GETTING VECTORS TO A DATA FRAME####
@@ -143,7 +141,7 @@ pBL<-ggplot()+theme_nothing()
 
     ##Sig Vars 
     swap_s.pca.var.explained<-swap_s.pca$sdev^2/sum(swap_s.pca$sdev^2)
-    View(swap.pca.df)
+    #View(swap.pca.df)
     
     ####calculating hulls####
     # SUBSETTING AND CALCULATING HULLS FOR EACH Population FOR PLOTTING
@@ -153,7 +151,7 @@ pBL<-ggplot()+theme_nothing()
     
     swap.FF.pca.df <-subset(swap.pca.df,Group=="F F")
     swap.FF.pca.hull<- swap.FF.pca.df  %>% ddply("Population",find_hull)
-    View(swap.FF.pca.df)
+    #View(swap.FF.pca.df)
     swap.FI.pca.df <-subset(swap.pca.df,Group=="F I")
     swap.FI.pca.hull<- swap.FI.pca.df  %>% ddply("Pheno",find_hull)
     
@@ -197,10 +195,9 @@ pBL<-ggplot()+theme_nothing()
     swap.s.LS.pca.df <-subset(swap.s.pca.df,Group=="L S")
     swap.s.LS.pca.hull<- swap.s.LS.pca.df  %>% ddply("Pheno",find_hull)
     
-  }
-  
+
   #### PLOT Config####
-  {
+
     # SIZES
     {
       F3_POINTSIZE=2
@@ -214,8 +211,8 @@ pBL<-ggplot()+theme_nothing()
       F3B_YLLIM=-3.45
       F3B_YULIM=4.0
       
-      F3_LGDJUST=c(0,1)
-      F3_LGDPOS="none" ###chnage if want legends on indivisual plots to c(0,0)
+      F3_LGDJUST=c(1,0)
+      F3_LGDPOS=c(0,0)###chnage if want legends on indivisual plots to c(0,0)
       F3_LGDSPCX=0.02
       F3_LGDSPCY=0.1
       F3_LGDKEYSIZE=0.6
@@ -254,15 +251,15 @@ pBL<-ggplot()+theme_nothing()
     #####On Bloomoington ####
     
     swapPHENOS<-ggplot()+
-      scale_color_manual(values = swapColorListPopulation) +
-      scale_shape_manual(values = swapPhenoShape) +
-      scale_fill_manual(values = swapColorListPheno)+
+      scale_color_manual(name="Populations", labels = swapPopulationLabels, values = swapColorListPopulation) +
+      scale_shape_manual(name= "Microbial Addition Source",labels = swapSelectionLabels, values = swapPhenoShape) +
+      scale_fill_manual(name= "Microbial Addition Source",labels = swapSelectionLabels, values = swapColorListPheno)+
       
       geom_polygon(data=swap.FN.pca.hull, alpha=0,aes(x=PC1,y=PC2,fill=as.factor(Pheno),color=as.factor(Population)),size=F3_LINESIZE) +
       geom_polygon(data=swap.FN.pca.hull, alpha=F3_FILLALPHA,aes(x=PC1,y=PC2,fill=as.factor(Pheno))) +
       
-      geom_polygon(data=swap.FF.pca.hull, alpha=0,aes(x=PC1,y=PC2,fill=as.factor(Pheno),color=as.factor(Population)),size=F3_LINESIZE) +
-      geom_polygon(data=swap.FF.pca.hull, alpha=F3_FILLALPHA,aes(x=PC1,y=PC2,fill=as.factor(Pheno))) +
+      geom_polygon(data=swap.FF.pca.hull, alpha=0,aes(x=PC1,y=PC3,fill=as.factor(Pheno),color=as.factor(Population)),size=F3_LINESIZE) +
+      geom_polygon(data=swap.FF.pca.hull, alpha=F3_FILLALPHA,aes(x=PC1,y=PC3,fill=as.factor(Pheno))) +
       
       geom_polygon(data=swap.FI.pca.hull, alpha=0,aes(x=PC1,y=PC2,fill=as.factor(Pheno),color=as.factor(Population)),size=F3_LINESIZE) +
       geom_polygon(data=swap.FI.pca.hull, alpha=F3_FILLALPHA,aes(x=PC1,y=PC2,fill=as.factor(Pheno))) +
@@ -286,7 +283,7 @@ pBL<-ggplot()+theme_nothing()
       geom_point(swap.FN.pca.df,
                  mapping = aes(x=PC1,y=PC2,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
       geom_point(swap.FF.pca.df,
-                 mapping = aes(x=PC1,y=PC2,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
+                 mapping = aes(x=PC1,y=PC3,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
       geom_point(swap.FI.pca.df,
                  mapping = aes(x=PC1,y=PC2,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
       geom_point(swap.FS.pca.df,
@@ -304,11 +301,11 @@ pBL<-ggplot()+theme_nothing()
       coord_fixed() + 
       xlab(paste("PC1 -",percent(swap.pca.var.explained[1], accuracy = 0.1))) +
       ylab(paste("PC2 -",percent(swap.pca.var.explained[2], accuracy = 0.1))) +
-      ggtitle("TITLE") +
+      ggtitle("") +
       theme(legend.justification=F3_LGDJUST, 
             legend.position = F3_LGDPOS,
             legend.direction = "vertical", 
-            legend.box = "horizontal", 
+            legend.box = "vertical", 
             legend.spacing.x = unit(F3_LGDSPCX,"cm"),
             legend.spacing.y = unit(F3_LGDSPCY,"cm"),
             legend.key.size = unit(F3_LGDKEYSIZE,"cm"))
@@ -376,4 +373,4 @@ pBL<-ggplot()+theme_nothing()
             legend.key.size = unit(F3_LGDKEYSIZE,"cm"))
     
     swap_sig_PHENOS
-    
+      

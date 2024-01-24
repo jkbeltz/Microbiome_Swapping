@@ -18,7 +18,7 @@ setwd("/Users/jackbeltz/Documents/PENN/Dissertation/CH 4 (Swapping)/Microbiome_s
 ####IMPORT####
 
 cagepheno=read_csv("allpheno22.cagesum.csv")
-View(cagepheno)
+#View(cagepheno)
 treatpheno=read_csv("allpheno22.treatsum.csv")
 
 ### make them long###
@@ -29,23 +29,28 @@ treatpheno_long <- melt(treatpheno ,  id.vars = c('pheno.treatment', 'label', 'c
 treatpheno_long=treatpheno_long[!grepl("sd", treatpheno_long$Phenotypes),]
 treatpheno_long=treatpheno_long[!grepl("se", treatpheno_long$Phenotypes),]
 
-view(cagepheno_long)
+#view(cagepheno_long)
 
-TEST <- ggplot(subset(cagepheno_long, Phenotypes %in% "PIG"), aes(x=as.factor(pheno.treatment), y=value, color=cage.treatment))+
+TEST <- ggplot(subset(cagepheno_long, Phenotypes %in% "LW"), aes(x=as.factor(pheno.treatment), y=value, color=cage.treatment))+
   geom_boxplot()+ 
   geom_jitter(width=.25)+
-  scale_x_discrete(name = "",limits = c("N", "F", "I", "S"), labels = c( "None", "Founder (Lab)", "Initiation (Field)", "Summer (Field)"))+
-  #scale_fill_manual(name = "",breaks=c("F","L"), labels =c("Field","Lab"), values = c("darkgreen","grey"))+
+  scale_x_discrete(name = "Microbial Addition Source",limits = c("N", "F", "I", "S"), labels = c( "None", "Founder (Lab)", "Initiation (Field)", "Summer (Field)"))+
+  scale_fill_manual(name = "",breaks=c("F","L"), labels =c("Field","Lab"), values = c("darkgreen","grey"))+
   scale_color_manual(name = "",breaks=c("F","L"), labels =c("Field","Lab"), values = c("darkgreen","darkgrey"))+
-  theme_bw(base_size = 12 )+
+  theme_bw(base_size = 12)+
+  ylab("Lipid Weight")+
   theme(strip.background = element_blank(),
         strip.placement = "outside")
 TEST
  
+cagepheno_test <- subset(cagepheno, pheno.treatment %in% c("F","I","S"))
+cagepheno_test <- subset(cagepheno, cage.treatment %in% c("F","L"))
 
-TEST1<-lme(LW ~ cage.treatment*pheno.treatment, random=~1|cage.number/cage.treatment, data=cagepheno) ##
-anova(TEST1) ##TP + TREATMENT SIG / INTERCEPT = 0.08
+
+TEST1<-lme(LW~ cage.treatment*pheno.treatment, random=~1|cage.number/cage.treatment, data=cagepheno) ##
+anova(TEST1) ##
 
 
-##LDF INTERACTION
+
+##LDM/F INTERACTION
 ##DESS ALMOST INTERACTION
