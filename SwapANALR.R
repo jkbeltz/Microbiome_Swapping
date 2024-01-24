@@ -1,6 +1,6 @@
 library(dplyr)
 library(tidyverse)
-setwd("/Users/jackbeltz/Desktop/swap/swap")
+setwd("/Users/jackbeltz/Documents/PENN/Dissertation/CH 4 (Swapping)/Microbiome_swapping/raw")
 
 ####STARVATION DATA####
 starv_swap=read.csv("starv.swap.csv")
@@ -324,11 +324,11 @@ treatsum_list <- list(starv22.treatsum, ldm22.treatsum, ldf22.treatsum, dess22.t
 allpheno.cagesum=cagesum_list %>% reduce(full_join, by=c("label","cage.number","cage.treatment","pheno.treatment"))
 allpheno22.cagesum <- allpheno.cagesum[ -c(5,9,13,17,23) ]
 View(allpheno22.cagesum) ### grouped by cage #
-write.csv(allpheno22.cagesum, '/Users/jackbeltz/Desktop/swap/swap/allpheno22.cagesum.csv', row.names = FALSE)
+#write.csv(allpheno22.cagesum, '', row.names = FALSE)
 
 
 
 allpheno.treatsum=treatsum_list %>% reduce(full_join, by=c("label","cage.treatment","pheno.treatment"))
 allpheno22.treatsum <- allpheno.treatsum[ -c(4,8,12,16,22) ]
 View(allpheno22.treatsum) ### grouped by treatment group
-write.csv(allpheno22.treatsum, '/Users/jackbeltz/Desktop/swap/swap/allpheno22.treatsum.csv', row.names = FALSE)
+#write.csv(allpheno22.treatsum, '', row.names = FALSE)

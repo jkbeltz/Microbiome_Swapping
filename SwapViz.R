@@ -10,9 +10,10 @@ library(scales)
 library(ggbreak)
 library(patchwork)
 library(ggpubr)
+library(reshape2)
 
 
-setwd("/Users/jackbeltz/Desktop/swap/swap")
+setwd("/Users/jackbeltz/Documents/PENN/Dissertation/CH 4 (Swapping)/Microbiome_swapping")
 
 ####IMPORT####
 
@@ -29,13 +30,12 @@ treatpheno_long=treatpheno_long[!grepl("se", treatpheno_long$Phenotypes),]
 
 view(cagepheno_long)
 
-TEST <- ggplot(cagepheno_long, aes(x=as.factor(pheno.treatment), y=value, color=cage.treatment))+
+TEST <- ggplot(subset(cagepheno_long, Phenotypes %in% "LW"), aes(x=as.factor(pheno.treatment), y=value, color=cage.treatment))+
   geom_boxplot()+ 
   geom_jitter()+
-  scale_x_discrete(name = "",limits = c("F", "N", "I", "S"), labels = c("Founder (Lab)", "None", "Initiation (Field)", "Summer (Field)"))+
+  scale_x_discrete(name = "",limits = c("N", "F", "I", "S"), labels = c( "None", "Founder (Lab)", "Initiation (Field)", "Summer (Field)"))+
   #scale_fill_manual(name = "",breaks=c("F","L"), labels =c("Field","Lab"), values = c("darkgreen","grey"))+
   scale_color_manual(name = "",breaks=c("F","L"), labels =c("Field","Lab"), values = c("darkgreen","darkgrey"))+
-  4ii
   theme_bw(base_size = 12 )+
   theme(strip.background = element_blank(),
         strip.placement = "outside")
