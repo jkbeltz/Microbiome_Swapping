@@ -18,6 +18,7 @@ setwd("/Users/jackbeltz/Documents/PENN/Dissertation/CH 4 (Swapping)/Microbiome_s
 ####IMPORT####
 
 cagepheno=read_csv("allpheno22.cagesum.csv")
+View(cagepheno)
 treatpheno=read_csv("allpheno22.treatsum.csv")
 
 ### make them long###
@@ -30,9 +31,9 @@ treatpheno_long=treatpheno_long[!grepl("se", treatpheno_long$Phenotypes),]
 
 view(cagepheno_long)
 
-TEST <- ggplot(subset(cagepheno_long, Phenotypes %in% "LW"), aes(x=as.factor(pheno.treatment), y=value, color=cage.treatment))+
+TEST <- ggplot(subset(cagepheno_long, Phenotypes %in% "PIG"), aes(x=as.factor(pheno.treatment), y=value, color=cage.treatment))+
   geom_boxplot()+ 
-  geom_jitter()+
+  geom_jitter(width=.25)+
   scale_x_discrete(name = "",limits = c("N", "F", "I", "S"), labels = c( "None", "Founder (Lab)", "Initiation (Field)", "Summer (Field)"))+
   #scale_fill_manual(name = "",breaks=c("F","L"), labels =c("Field","Lab"), values = c("darkgreen","grey"))+
   scale_color_manual(name = "",breaks=c("F","L"), labels =c("Field","Lab"), values = c("darkgreen","darkgrey"))+
