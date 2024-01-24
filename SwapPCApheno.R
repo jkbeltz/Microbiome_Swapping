@@ -312,6 +312,8 @@ pBL<-ggplot()+theme_nothing()
     
     swapPHENOS
 
+    
+##significant phenotypes only####
     swap_sig_PHENOS<-ggplot()+
       scale_color_manual(values = swapColorListPopulation) +
       scale_shape_manual(values = swapPhenoShape) +
