@@ -261,11 +261,11 @@ pBL<-ggplot()+theme_nothing()
       geom_polygon(data=swap.FF.pca.hull, alpha=0,aes(x=PC1,y=PC3,fill=as.factor(Pheno),color=as.factor(Population)),size=F3_LINESIZE) +
       geom_polygon(data=swap.FF.pca.hull, alpha=F3_FILLALPHA,aes(x=PC1,y=PC3,fill=as.factor(Pheno))) +
       
-      geom_polygon(data=swap.FI.pca.hull, alpha=0,aes(x=PC1,y=PC2,fill=as.factor(Pheno),color=as.factor(Population)),size=F3_LINESIZE) +
-      geom_polygon(data=swap.FI.pca.hull, alpha=F3_FILLALPHA,aes(x=PC1,y=PC2,fill=as.factor(Pheno))) +
+      #geom_polygon(data=swap.FI.pca.hull, alpha=0,aes(x=PC1,y=PC2,fill=as.factor(Pheno),color=as.factor(Population)),size=F3_LINESIZE) +
+      #geom_polygon(data=swap.FI.pca.hull, alpha=F3_FILLALPHA,aes(x=PC1,y=PC2,fill=as.factor(Pheno))) +
       
-      geom_polygon(data=swap.FS.pca.hull, alpha=0,aes(x=PC1,y=PC2,fill=as.factor(Pheno),color=as.factor(Population)),size=F3_LINESIZE) +
-      geom_polygon(data=swap.FS.pca.hull, alpha=F3_FILLALPHA,aes(x=PC1,y=PC2,fill=as.factor(Pheno))) +
+      #geom_polygon(data=swap.FS.pca.hull, alpha=0,aes(x=PC1,y=PC2,fill=as.factor(Pheno),color=as.factor(Population)),size=F3_LINESIZE) +
+      #geom_polygon(data=swap.FS.pca.hull, alpha=F3_FILLALPHA,aes(x=PC1,y=PC2,fill=as.factor(Pheno))) +
       
       geom_polygon(data=swap.LN.pca.hull, alpha=0,aes(x=PC1,y=PC2,fill=as.factor(Pheno),color=as.factor(Population)),size=F3_LINESIZE) +
       geom_polygon(data=swap.LN.pca.hull, alpha=F3_FILLALPHA,aes(x=PC1,y=PC2,fill=as.factor(Pheno))) +
@@ -273,29 +273,29 @@ pBL<-ggplot()+theme_nothing()
       geom_polygon(data=swap.LF.pca.hull, alpha=0,aes(x=PC1,y=PC2,fill=as.factor(Pheno),color=as.factor(Population)),size=F3_LINESIZE) +
       geom_polygon(data=swap.LF.pca.hull, alpha=F3_FILLALPHA,aes(x=PC1,y=PC2,fill=as.factor(Pheno))) +
       
-      geom_polygon(data=swap.LI.pca.hull, alpha=0,aes(x=PC1,y=PC2,fill=as.factor(Pheno),color=as.factor(Population)),size=F3_LINESIZE) +
-      geom_polygon(data=swap.LI.pca.hull, alpha=F3_FILLALPHA,aes(x=PC1,y=PC2,fill=as.factor(Pheno))) +
+      #geom_polygon(data=swap.LI.pca.hull, alpha=0,aes(x=PC1,y=PC2,fill=as.factor(Pheno),color=as.factor(Population)),size=F3_LINESIZE) +
+      #geom_polygon(data=swap.LI.pca.hull, alpha=F3_FILLALPHA,aes(x=PC1,y=PC2,fill=as.factor(Pheno))) +
       
-      geom_polygon(data=swap.LS.pca.hull, alpha=0,aes(x=PC1,y=PC2,fill=as.factor(Pheno),color=as.factor(Population)),size=F3_LINESIZE) +
-      geom_polygon(data=swap.LS.pca.hull, alpha=F3_FILLALPHA,aes(x=PC1,y=PC2,fill=as.factor(Pheno))) +
+      #geom_polygon(data=swap.LS.pca.hull, alpha=0,aes(x=PC1,y=PC2,fill=as.factor(Pheno),color=as.factor(Population)),size=F3_LINESIZE) +
+      #geom_polygon(data=swap.LS.pca.hull, alpha=F3_FILLALPHA,aes(x=PC1,y=PC2,fill=as.factor(Pheno))) +
       
       
       geom_point(swap.FN.pca.df,
                  mapping = aes(x=PC1,y=PC2,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
       geom_point(swap.FF.pca.df,
                  mapping = aes(x=PC1,y=PC3,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
-      geom_point(swap.FI.pca.df,
-                 mapping = aes(x=PC1,y=PC2,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
-      geom_point(swap.FS.pca.df,
-                 mapping = aes(x=PC1,y=PC2,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
+      #geom_point(swap.FI.pca.df,
+                 #mapping = aes(x=PC1,y=PC2,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
+      #geom_point(swap.FS.pca.df,
+                 #mapping = aes(x=PC1,y=PC2,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
       geom_point(swap.LN.pca.df,
                  mapping = aes(x=PC1,y=PC2,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
       geom_point(swap.LF.pca.df,
                  mapping = aes(x=PC1,y=PC2,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
-      geom_point(swap.LI.pca.df,
-                 mapping = aes(x=PC1,y=PC2,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
-      geom_point(swap.LS.pca.df,
-                 mapping = aes(x=PC1,y=PC2,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
+      #geom_point(swap.LI.pca.df,
+                 #mapping = aes(x=PC1,y=PC2,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
+      #geom_point(swap.LS.pca.df,
+                 #mapping = aes(x=PC1,y=PC2,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
       scale_x_continuous(limits = c(F3_XLLIM, F3_XULIM)) + 
       scale_y_continuous(limits = c(F3A_YLLIM, F3A_YULIM)) +
       coord_fixed() + 
@@ -325,11 +325,11 @@ pBL<-ggplot()+theme_nothing()
       geom_polygon(data=swap.s.FF.pca.hull, alpha=0,aes(x=PC1,y=PC2,fill=as.factor(Pheno),color=as.factor(Population)),size=F3_LINESIZE) +
       geom_polygon(data=swap.s.FF.pca.hull, alpha=F3_FILLALPHA,aes(x=PC1,y=PC2,fill=as.factor(Pheno))) +
       
-      geom_polygon(data=swap.s.FI.pca.hull, alpha=0,aes(x=PC1,y=PC2,fill=as.factor(Pheno),color=as.factor(Population)),size=F3_LINESIZE) +
-      geom_polygon(data=swap.s.FI.pca.hull, alpha=F3_FILLALPHA,aes(x=PC1,y=PC2,fill=as.factor(Pheno))) +
+      #geom_polygon(data=swap.s.FI.pca.hull, alpha=0,aes(x=PC1,y=PC2,fill=as.factor(Pheno),color=as.factor(Population)),size=F3_LINESIZE) +
+      #geom_polygon(data=swap.s.FI.pca.hull, alpha=F3_FILLALPHA,aes(x=PC1,y=PC2,fill=as.factor(Pheno))) +
       
-      geom_polygon(data=swap.s.FS.pca.hull, alpha=0,aes(x=PC1,y=PC2,fill=as.factor(Pheno),color=as.factor(Population)),size=F3_LINESIZE) +
-      geom_polygon(data=swap.s.FS.pca.hull, alpha=F3_FILLALPHA,aes(x=PC1,y=PC2,fill=as.factor(Pheno))) +
+      #geom_polygon(data=swap.s.FS.pca.hull, alpha=0,aes(x=PC1,y=PC2,fill=as.factor(Pheno),color=as.factor(Population)),size=F3_LINESIZE) +
+      #geom_polygon(data=swap.s.FS.pca.hull, alpha=F3_FILLALPHA,aes(x=PC1,y=PC2,fill=as.factor(Pheno))) +
       
       geom_polygon(data=swap.s.LN.pca.hull, alpha=0,aes(x=PC1,y=PC2,fill=as.factor(Pheno),color=as.factor(Population)),size=F3_LINESIZE) +
       geom_polygon(data=swap.s.LN.pca.hull, alpha=F3_FILLALPHA,aes(x=PC1,y=PC2,fill=as.factor(Pheno))) +
@@ -337,29 +337,29 @@ pBL<-ggplot()+theme_nothing()
       geom_polygon(data=swap.s.LF.pca.hull, alpha=0,aes(x=PC1,y=PC2,fill=as.factor(Pheno),color=as.factor(Population)),size=F3_LINESIZE) +
       geom_polygon(data=swap.s.LF.pca.hull, alpha=F3_FILLALPHA,aes(x=PC1,y=PC2,fill=as.factor(Pheno))) +
       
-      geom_polygon(data=swap.s.LI.pca.hull, alpha=0,aes(x=PC1,y=PC2,fill=as.factor(Pheno),color=as.factor(Population)),size=F3_LINESIZE) +
-      geom_polygon(data=swap.s.LI.pca.hull, alpha=F3_FILLALPHA,aes(x=PC1,y=PC2,fill=as.factor(Pheno))) +
+      #geom_polygon(data=swap.s.LI.pca.hull, alpha=0,aes(x=PC1,y=PC2,fill=as.factor(Pheno),color=as.factor(Population)),size=F3_LINESIZE) +
+      #geom_polygon(data=swap.s.LI.pca.hull, alpha=F3_FILLALPHA,aes(x=PC1,y=PC2,fill=as.factor(Pheno))) +
       
-      geom_polygon(data=swap.s.LS.pca.hull, alpha=0,aes(x=PC1,y=PC2,fill=as.factor(Pheno),color=as.factor(Population)),size=F3_LINESIZE) +
-      geom_polygon(data=swap.s.LS.pca.hull, alpha=F3_FILLALPHA,aes(x=PC1,y=PC2,fill=as.factor(Pheno))) +
+      #geom_polygon(data=swap.s.LS.pca.hull, alpha=0,aes(x=PC1,y=PC2,fill=as.factor(Pheno),color=as.factor(Population)),size=F3_LINESIZE) +
+      #geom_polygon(data=swap.s.LS.pca.hull, alpha=F3_FILLALPHA,aes(x=PC1,y=PC2,fill=as.factor(Pheno))) +
       
       
       geom_point(swap.s.FN.pca.df,
                  mapping = aes(x=PC1,y=PC2,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
       geom_point(swap.s.FF.pca.df,
                  mapping = aes(x=PC1,y=PC2,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
-      geom_point(swap.s.FI.pca.df,
-                 mapping = aes(x=PC1,y=PC2,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
-      geom_point(swap.s.FS.pca.df,
-                 mapping = aes(x=PC1,y=PC2,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
+      #geom_point(swap.s.FI.pca.df,
+                 #mapping = aes(x=PC1,y=PC2,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
+      #geom_point(swap.s.FS.pca.df,
+                 #mapping = aes(x=PC1,y=PC2,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
       geom_point(swap.s.LN.pca.df,
                  mapping = aes(x=PC1,y=PC2,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
       geom_point(swap.s.LF.pca.df,
                  mapping = aes(x=PC1,y=PC2,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
-      geom_point(swap.s.LI.pca.df,
-                 mapping = aes(x=PC1,y=PC2,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
-      geom_point(swap.s.LS.pca.df,
-                 mapping = aes(x=PC1,y=PC2,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
+      #geom_point(swap.s.LI.pca.df,
+                 #mapping = aes(x=PC1,y=PC2,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
+      #geom_point(swap.s.LS.pca.df,
+                 #mapping = aes(x=PC1,y=PC2,fill=as.factor(Pheno),shape=as.factor(Pheno),color=Population),size=F3_POINTSIZE)+
       scale_x_continuous(limits = c(F3_XLLIM, F3_XULIM)) + 
       scale_y_continuous(limits = c(F3A_YLLIM, F3A_YULIM)) +
       coord_fixed() + 

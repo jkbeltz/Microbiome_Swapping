@@ -28,8 +28,9 @@ cagepheno_long=cagepheno_long[!grepl("se", cagepheno_long$Phenotypes),]
 treatpheno_long <- melt(treatpheno ,  id.vars = c('pheno.treatment', 'label', 'cage.treatment'), variable.name = 'Phenotypes')
 treatpheno_long=treatpheno_long[!grepl("sd", treatpheno_long$Phenotypes),]
 treatpheno_long=treatpheno_long[!grepl("se", treatpheno_long$Phenotypes),]
+view(treatpheno_long)
 
-#view(cagepheno_long)
+view(cagepheno_long)
 
 TEST <- ggplot(subset(cagepheno_long, Phenotypes %in% "LW"), aes(x=as.factor(pheno.treatment), y=value, color=cage.treatment))+
   geom_boxplot()+ 
@@ -43,6 +44,71 @@ TEST <- ggplot(subset(cagepheno_long, Phenotypes %in% "LW"), aes(x=as.factor(phe
         strip.placement = "outside")
 TEST
  
+TEST <- ggplot(subset(cagepheno_long, Phenotypes %in% "PIG"), aes(x=cage.treatment, y=value, fill=cage.treatment))+
+  geom_boxplot()+ 
+  #geom_jitter(width=.25)+
+  scale_color_discrete(name = "Microbial Addition Source",
+                       limits = c("N", "F", "I", "S"), 
+                       labels = c( "None", "Founder (Lab)", "Initiation (Field)", "Summer (Field)"))+
+  scale_x_discrete(name = "Population Envrionment",
+                       limits = c("F", "L"), 
+                       labels = c( "Field ", "Lab"))+
+  scale_fill_manual(name = "Population Envrionment",
+                    breaks=c("F","L"), 
+                    labels =c("Field","Lab"), 
+                    values = c("darkgreen","grey"))+
+  #ylab("Lipid Weight")+
+  theme(strip.background = element_blank(),
+        strip.placement = "outside")+
+  facet_wrap(~pheno.treatment)
+
+
+TEST
+
+TEST <- ggplot(subset(cagepheno_long, pheno.treatment %in% "F"), aes(x=cage.treatment, y=value, fill=cage.treatment))+
+  geom_boxplot()+ 
+  #geom_jitter(width=.25)+
+  scale_color_discrete(name = "Microbial Addition Source",
+                       limits = c("N", "F", "I", "S"), 
+                       labels = c( "None", "Founder (Lab)", "Initiation (Field)", "Summer (Field)"))+
+  scale_x_discrete(name = "Population Envrionment",
+                   limits = c("F", "L"), 
+                   labels = c( "Field ", "Lab"))+
+  scale_fill_manual(name = "Population Envrionment",
+                    breaks=c("F","L"), 
+                    labels =c("Field","Lab"), 
+                    values = c("darkgreen","grey"))+
+  #ylab("Lipid Weight")+
+  theme(strip.background = element_blank(),
+        strip.placement = "outside")+
+  facet_wrap(~Phenotypes, scales = "free")
+
+
+TEST
+
+
+TEST <- ggplot(cagepheno_long, aes(x=cage.treatment, y=value, fill=as.factor(pheno.treatment)))+
+  geom_boxplot()+ 
+  #geom_jitter(width=.25)+
+  scale_color_discrete(name = "Microbial Addition Source",
+                       limits = c("N", "F", "I", "S"), 
+                       labels = c( "None", "Founder (Lab)", "Initiation (Field)", "Summer (Field)"))+
+  scale_x_discrete(name = "Population Envrionment",
+                       limits = c("F", "L"), 
+                       labels = c( "Field ", "Lab"))+
+  scale_fill_manual(name = "Microbial Addition Source",
+                     breaks=c("N", "F", "I", "S"), 
+                     labels =c( "None", "Founder (Lab)", "Initiation (Field)", "Summer (Field)"), 
+                     values = c("darkgrey", "blue", "orange","red"))+
+  theme_bw(base_size = 12)+
+  #ylab("Lipid Weight")+
+  theme(strip.background = element_blank(),
+        strip.placement = "outside")+
+  facet_wrap(~Phenotypes, scales = "free")
+
+TEST
+
+####STATS#####
 cagepheno_test <- subset(cagepheno, pheno.treatment %in% c("F","I","S"))
 cagepheno_test <- subset(cagepheno, cage.treatment %in% c("F","L"))
 
